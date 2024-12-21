@@ -23,10 +23,10 @@
 
 ## Demo
 
-You can view the live demo of the project at: [SecureTech Live Demo](#) *(Replace `#` with your GitHub Pages link or hosting URL)*
+You can view the live demo of the project at:  https://rm261124.github.io/SecureTech/
 
 ## Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/securetech.git
+   git clone https://github.com/rm261124.github.io/securetech.git
