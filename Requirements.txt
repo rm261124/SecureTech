@@ -1,0 +1,3 @@
+Flask==2.3.3  # For creating a backend server
+requests==2.31.0  # If making HTTP requests
+gunicorn==20.1.0  # For deploying the Flask app

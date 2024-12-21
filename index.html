@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/ >
+    <title>SecureTech - Your Cybersecurity Partner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #0a0f1e;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 15px;
+            height: 15px;
+            border: 2px solid #00ff9c;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            transition: all 0.15s ease;
+            mix-blend-mode: exclusion;
+        }
+
+        /* Code Rain Background (inspired by Matrix) */
+        /* We'll create a pseudo-element for the hero section */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, #0a0f1e, #151a2e);
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Source Code Pro" font-size="60" fill="%2300ff9c" opacity="0.05">01100110 01101111 01110010 01110100 01110010 01100101 01110011 01110011</text></svg>') repeat;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #0f1a38;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            padding: 15px 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #00ff9c;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 3px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: rgba(0,255,156,0.2);
+        }
+
+        /* Hero Section */
+        header {
+            position: relative;
+            height: 100vh;
+            padding-top: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        header h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: 'Source Code Pro', monospace;
+            color: #00ff9c;
+            animation: fadeInDown 1.2s ease forwards;
+            opacity: 0;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeInDown {
+            0% {transform: translateY(-50px); opacity:0;}
+            100% {transform: translateY(0); opacity:1;}
+        }
+
+        @keyframes fadeInUp {
+            0% {transform: translateY(50px); opacity:0;}
+            100% {transform: translateY(0); opacity:1;}
+        }
+
+        header .btn {
+            padding: 12px 24px;
+            background: #00ff9c;
+            color: #0a0f1e;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            opacity:0;
+            animation: fadeInUp 1.2s ease forwards;
+            animation-delay: 1s;
+        }
+
+        header .btn:hover {
+            background: #00d382;
+            transform: scale(1.05);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 20px;
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            font-family: 'Source Code Pro', monospace;
+            color: #00ff9c;
+            position: relative;
+        }
+
+        section h2::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: #00ff9c;
+            margin: 20px auto 0 auto;
+        }
+
+        p {
+            color: #ccc;
+        }
+
+        /* Services Section */
+        .services .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .services .card {
+            background: #11172b;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,255,156,0.1);
+            padding: 30px 20px;
+            text-align: center;
+            flex: 1 1 calc(33.333% - 40px);
+            min-width: 250px;
+            max-width: 300px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .services .card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .services .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            color: #00ff9c;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .services .card p {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            color: #ccc;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .services .card button {
+            padding: 10px 20px;
+            background: #00ff9c;
+            color: #0a0f1e;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .services .card button:hover {
+            background: #00d382;
+        }
+
+        /* Training Section */
+        .training .training-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .training .course {
+            background: #11172b;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,255,156,0.1);
+            padding: 30px 20px;
+            text-align: center;
+            flex: 1 1 calc(33.333% - 40px);
+            min-width: 250px;
+            max-width: 300px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .training .course:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .training .course h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: #00ff9c;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .training .course p {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .training .course button {
+            padding: 10px 20px;
+            background: #00ff9c;
+            color: #0a0f1e;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .training .course button:hover {
+            background: #00d382;
+        }
+
+        /* About Us */
+        .about p {
+            max-width: 700px;
+            margin: 20px auto;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .contact form input, .contact form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            background: #0f1a38;
+            color: #fff;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contact form input::placeholder, .contact form textarea::placeholder {
+            color: #888;
+        }
+
+        .contact form button {
+            padding: 12px 20px;
+            background: #00ff9c;
+            color: #0a0f1e;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .contact form button:hover {
+            background: #00d382;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f1a38;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 10px;
+            }
+
+            header h2 {
+                font-size: 2.2rem;
+            }
+
+            .services .card, .training .course {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+
+    <nav>
+        <div class="container">
+            <h1>SecureTech</h1>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#training">Training</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home">
+        <h2>Securing Your Digital Future</h2>
+        <p>At SecureTech, we offer cutting-edge cybersecurity solutions and training programs. We help businesses and individuals safeguard their data, strengthen their defenses, and stay ahead of evolving cyber threats.</p>
+        <a href="#services" class="btn">Explore Our Services</a>
+    </header>
+
+    <main>
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Our Services</h2>
+                <div class="services-grid">
+                    <div class="card">
+                        <h3>Vulnerability Assessments</h3>
+                        <p>Identify weak points before attackers do. We thoroughly scan and analyze your networks, applications, and systems.</p>
+                        <button onclick="bookService('Vulnerability Assessments')">Book Now</button>
+                    </div>
+                    <div class="card">
+                        <h3>Penetration Testing</h3>
+                        <p>Our ethical hackers simulate real-world attacks, helping you understand and fix security gaps proactively.</p>
+                        <button onclick="bookService('Penetration Testing')">Book Now</button>
+                    </div>
+                    <div class="card">
+                        <h3>Incident Response</h3>
+                        <p>Rapid containment and eradication of cyber threats. We minimize damage and restore your operations swiftly.</p>
+                        <button onclick="bookService('Incident Response')">Book Now</button>
+                    </div>
+                    <div class="card">
+                        <h3>Managed Security</h3>
+                        <p>24/7 monitoring and proactive threat management. We safeguard your infrastructure around the clock.</p>
+                        <button onclick="bookService('Managed Security')">Book Now</button>
+                    </div>
+                    <div class="card">
+                        <h3>Compliance Audits</h3>
+                        <p>Ensure adherence to regulatory standards like GDPR, HIPAA, and PCI-DSS. We keep you audit-ready.</p>
+                        <button onclick="bookService('Compliance Audits')">Book Now</button>
+                    </div>
+                    <div class="card">
+                        <h3>Cybersecurity Consulting</h3>
+                        <p>Strategic guidance and security architecture planning, tailored to your organization's unique needs.</p>
+                        <button onclick="bookService('Cybersecurity Consulting')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="training" class="training">
+            <div class="container">
+                <h2>Cybersecurity Training</h2>
+                <p>Empower your team and yourself with the knowledge to identify, prevent, and respond to cyber threats. Our training programs combine hands-on exercises with the latest best practices.</p>
+                <div class="training-grid">
+                    <div class="course">
+                        <h3>Security Fundamentals</h3>
+                        <p>Learn the basics of cybersecurity, common attack vectors, and fundamental defense techniques.</p>
+                        <button onclick="enroll('Security Fundamentals')">Enroll</button>
+                    </div>
+                    <div class="course">
+                        <h3>Advanced Threat Hunting</h3>
+                        <p>Master techniques to detect, analyze, and mitigate sophisticated cyber threats lurking in your environment.</p>
+                        <button onclick="enroll('Advanced Threat Hunting')">Enroll</button>
+                    </div>
+                    <div class="course">
+                        <h3>Incident Response Bootcamp</h3>
+                        <p>Develop practical skills to respond to breaches, minimize damage, and recover quickly from cyber incidents.</p>
+                        <button onclick="enroll('Incident Response Bootcamp')">Enroll</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>SecureTech is a team of certified cybersecurity experts, ethical hackers, and consultants with decades of combined experience. We hold industry-leading certifications (CISSP, OSCP, CISM) and leverage cutting-edge tools and methodologies to protect our clients worldwide. Our mission is to build trust in the digital age by safeguarding the confidentiality, integrity, and availability of critical information.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <form id="contact-form">
+                    <input type="text" id="name" placeholder="Your Name" required>
+                    <input type="email" id="email" placeholder="Your Email" required>
+                    <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SecureTech. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Custom cursor logic
+        const cursor = document.querySelector(".custom-cursor");
+
+        document.addEventListener("mousemove", e => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+        });
+
+        document.addEventListener("mouseover", e => {
+            if (['A', 'BUTTON', 'INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+                cursor.style.transform = "translate(-50%, -50%) scale(1.7)";
+                cursor.style.backgroundColor = "#00ff9c";
+            } else {
+                cursor.style.transform = "translate(-50%, -50%) scale(1)";
+                cursor.style.backgroundColor = "transparent";
+            }
+        });
+
+        // Booking services
+        function bookService(service) {
+            alert(`You have booked the service: ${service}. We will contact you shortly!`);
+        }
+
+        // Enroll in training
+        function enroll(course) {
+            alert(`You have enrolled in: ${course}. Further instructions will be emailed to you.`);
+        }
+
+        // Contact form submission with basic validation
+        document.getElementById("contact-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (!name || !email || !message) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            // A simple email validation check
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(!emailRegex.test(email)) {
+                alert("Please enter a valid email.");
+                return;
+            }
+
+            alert("Thank you for reaching out! We will get back to you soon.");
+            this.reset();
+        });
+    </script>
+</body>
+</html>
