@@ -1,0 +1,30 @@
+# Node.js
+node_modules/
+
+# Logs
+*.log
+
+# IDE files (for example, Visual Studio Code)
+.vscode/
+
+# OS-specific files
+.DS_Store      # macOS
+Thumbs.db      # Windows
+
+# Environment variable files
+.env
+
+# Build directories
+dist/
+build/
+
+# Dependency directories (if using package managers like npm, yarn)
+npm-debug.log
+yarn-error.log
+
+# Temporary files
+*.swp
+*.bak
+
+# .idea folder (for JetBrains IDEs)
+.idea/
