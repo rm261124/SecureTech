@@ -1,0 +1,82 @@
+CI Pipeline (Continuous Integration)
+This pipeline ensures that each commit is automatically tested and the site is built before deployment.
+
+name: CI Pipeline - SecureTech Website
+
+on:
+  push:
+    branches:
+      - main  # Trigger the pipeline on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger the pipeline on pull requests
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js (if using build tools like Webpack, Gulp, or similar)
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'  # Specify Node version if necessary
+
+    - name: Install dependencies
+      run: |
+        npm install  # Assuming you're using npm for frontend dependencies
+
+    - name: Lint code (optional)
+      run: |
+        npm run lint  # If you have a linter set up for your code
+
+    - name: Run Tests (optional)
+      run: |
+        npm test  # If you have automated tests
+
+    - name: Build static site (if using a build tool like Webpack or static site generator)
+      run: |
+        npm run build  # Adjust if you're using build tools to generate the final site
+
+CD Pipeline (Continuous Deployment)
+The CD pipeline will deploy the site automatically whenever there are changes to the main branch (e.g., after merging a pull request). 
+name: CD Pipeline - Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger the deployment on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'  # Adjust version if necessary
+
+    - name: Install dependencies
+      run: |
+        npm install
+
+    - name: Build static site
+      run: |
+        npm run build  # Ensure this creates the final output in a 'dist' or 'build' folder
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages  # GitHub Pages branch
+        folder: dist  # The folder where the build files are located, adjust accordingly
+
+      # Optionally set up a GitHub token for deployment (can be automatically generated)
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
